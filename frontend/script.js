@@ -39,7 +39,7 @@ form.addEventListener('submit', async (e) => {
 
   try {
     // Faz a requisição para o seu servidor Express
-    const response = await fetch(`https://tdahto.onrender.com/${endpoint}`, {
+    const response = await fetch(`https://tdahto.onrender.com${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
