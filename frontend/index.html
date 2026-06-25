@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDAH.to 🐱</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="login-container">
+  <img src="gatinho.png" alt="Logo TDAH.to" class="logo-img">
+    <h1>TDAH.to</h1>
+    <p class="subtitle">Seu espaço calmo para focar.</p>
+
+    <form id="authForm">
+      <div class="input-group" id="nameGroup" style="display: none;">
+        <input type="text" id="nameInput" placeholder="Como quer ser chamado?">
+      </div>
+      
+      <div class="input-group">
+        <input type="email" id="emailInput" placeholder="Seu email" required>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="passwordInput" placeholder="Sua senha" required>
+      </div>
+
+      <button type="submit" id="submitBtn">Entrar</button>
+    </form>
+
+    <div id="messageBox"></div>
+
+    <div class="toggle-form">
+      <span id="toggleText">Ainda não tem conta?</span> 
+      <a id="toggleLink">Criar agora</a>
+    </div>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - TDAH.to 🐱</title>
+  <link rel="stylesheet" href="style.css?v=4">
+  <style>
+    body { 
+      align-items: flex-start; 
+      padding: 40px 20px; 
+    }
+    
+    .dashboard-container { 
+      width: 100%; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+    }
+    
+    .topo { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 30px; 
+    }
+    
+    .boas-vindas { 
+      display: flex; 
+      align-items: center; 
+      gap: 15px; 
+    }
+    
+    .boas-vindas h1 { 
+      font-size: 28px; 
+      color: var(--text-main);
+    }
+    
+    .btn-sair { 
+      background-color: transparent; 
+      color: var(--text-light); 
+      border: 2px solid var(--primary-pastel); 
+      width: auto; 
+      padding: 8px 30px; 
+      font-weight: bold;
+      margin-top: 0;
+    }
+    
+    .btn-sair:hover { 
+      background-color: #ff6b6b; 
+      color: white; 
+      border-color: #ff6b6b; 
+    }
+    
+    .dashboard-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .bottom-grid { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 20px; 
+    }
+    
+    .card { 
+      background-color: var(--surface-color); 
+      padding: 25px; 
+      border-radius: 20px; 
+      box-shadow: 0 4px 15px rgba(163, 133, 224, 0.08); 
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card h2 { 
+      color: var(--primary-dark); 
+      font-size: 18px; 
+      margin-bottom: 20px; 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+    }
+
+    .progresso-stats {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .progresso-stats .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stat-value { 
+      font-size: 24px;
+      font-weight: bold; 
+      color: var(--primary-dark); 
+    }
+
+    /* ==========================================
+       CONSERTO BLINDADO DAS LISTAS (DIRETO NO HTML)
+       ========================================== */
+    .list-container {
+      margin-top: 15px;
+      max-height: 250px;
+      overflow-y: auto;
+      width: 100%;
+    }
+
+    .list-item {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important; 
+      background-color: #FDFBFD !important;
+      padding: 12px 15px !important;
+      border-radius: 10px !important;
+      margin-bottom: 8px !important;
+      width: 100% !important; 
+      box-sizing: border-box !important;
+    }
+
+    .item-left {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important; 
+      gap: 12px !important;
+      flex: 1 !important;
+    }
+
+    .item-left p {
+      margin: 0 !important;
+      padding: 0 !important;
+      text-align: left !important;
+      color: #4A4A4A !important;
+      font-size: 14px !important;
+    }
+
+    .list-item.completed p {
+      text-decoration: line-through !important;
+      color: #8E8E8E !important;
+    }
+
+    .list-item input[type="checkbox"] {
+      margin: 0 !important;
+      width: 18px !important;
+      height: 18px !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+    }
+
+    .list-item button {
+      background: none !important;
+      border: none !important;
+      color: #ff6b6b !important;
+      width: auto !important;
+      padding: 5px !important;
+      margin: 0 !important;
+      font-size: 14px !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+    }
+
+    @media (max-width: 900px) {
+      .bottom-grid { grid-template-columns: 1fr; }
+      .progresso-stats { flex-direction: column; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <header class="topo">
+      <div class="boas-vindas">
+      <img src="gatinho.png" alt="Logo TDAH.to" class="logo-img">
+        <h1>TDAH.to</h1>
+      </div>
+      <button class="btn-sair" id="logoutBtn">SAIR</button>
+    </header>
+
+    <main class="dashboard-layout">
+      
+      <div class="bottom-grid">
+        
+        <div class="card" style="text-align: center;">
+          <h2>🍅 POMODORO</h2>
+          <div class="pomodoro-config">
+            <label>Foco (min) <input type="number" id="focusInput" value="25" min="1"></label>
+            <label>Pausa (min) <input type="number" id="pauseInput" value="5" min="1"></label>
+          </div>
+          <div id="timerDisplay" style="font-size: 56px; font-weight: bold; color: var(--text-main); margin: 10px 0;">25:00</div>
+          <div id="timerStatus" style="color: var(--text-light); margin-bottom: 15px; font-size: 14px;">Pronto para focar</div>
+          <button id="btnPomodoro" style="width: 100%;">Iniciar</button>
+        </div>
+
+        <div class="card">
+          <h2>🗒️ TAREFAS</h2>
+          <div class="input-flex">
+            <input type="text" id="taskInput" placeholder="Nova tarefa...">
+            <button id="btnTask">+</button>
+          </div>
+          <div class="list-container" id="tasksList"></div>
+        </div>
+
+        <div class="card">
+          <h2>🧠 BRAINDUMP</h2>
+          <p style="font-size: 12px; color: var(--text-light); margin-bottom: 15px;">Descarregue pensamentos para limpar a mente.</p>
+          <div class="input-flex">
+            <input type="text" id="braindumpInput" placeholder="Estou pensando em...">
+            <button id="btnBraindump">Salvar</button>
+          </div>
+          <div class="list-container" id="braindumpsList"></div>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <h2>📊 PROGRESSO</h2>
+        <div class="progresso-stats">
+          <div class="stat-item">
+            <span>Tarefas feitas hoje</span>
+            <span class="stat-value" id="statTasks">0</span>
+          </div>
+          <div class="stat-item">   
+            <span>Ciclos concluídos</span>
+            <span class="stat-value" id="statCycles">0</span>
+          </div>
+          <div class="stat-item">
+            <span>Tempo focado</span>
+            <span class="stat-value" id="statTime">0 min</span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('tdah_token'); 
+      window.location.href = 'index.html'; 
+    });
+  </script>
+<script src="dashboard.js?v=6"></script></html> 

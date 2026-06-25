@@ -1,0 +1,349 @@
+/* ==========================================
+   VARIÁVEIS DE CORES (Paleta Pastel)
+   ========================================== */
+:root {
+  --bg-color: #FDFBFD;
+  --surface-color: #FFFFFF;
+  --primary-pastel: #D6CDEA;
+  --primary-dark: #A385E0;
+  --text-main: #4A4A4A;
+  --text-light: #8E8E8E;
+}
+
+/* ==========================================
+   RESETS E CONFIGURAÇÕES GERAIS
+   ========================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   TELA DE LOGIN E COMPONENTES GERAIS
+   ========================================== */
+.login-container {
+  background-color: var(--surface-color);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(163, 133, 224, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color: var(--primary-dark);
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+
+p.subtitle {
+  color: var(--text-light);
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--primary-pastel);
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: var(--primary-dark);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-dark);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #8B6BCC;
+}
+
+.toggle-form {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.toggle-form a {
+  color: var(--primary-dark);
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#messageBox {
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  min-height: 20px;
+}
+
+/* ==========================================
+   TELA DO DASHBOARD (Layout Principal)
+   ========================================== */
+.dashboard-container { 
+  width: 100%; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+}
+
+.topo { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 30px; 
+}
+
+.boas-vindas { 
+  display: flex; 
+  align-items: center; 
+  gap: 15px; 
+}
+
+.boas-vindas h1 { 
+  font-size: 28px; 
+  color: var(--text-main);
+}
+
+.btn-sair { 
+  background-color: transparent; 
+  color: var(--text-light); 
+  border: 2px solid var(--primary-pastel); 
+  width: auto; 
+  padding: 8px 30px; 
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.btn-sair:hover { 
+  background-color: #ff6b6b; 
+  color: white; 
+  border-color: #ff6b6b; 
+}
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bottom-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+}
+
+.card { 
+  background-color: var(--surface-color); 
+  padding: 25px; 
+  border-radius: 20px; 
+  box-shadow: 0 4px 15px rgba(163, 133, 224, 0.08); 
+  display: flex;
+  flex-direction: column;
+}
+
+.card h2 { 
+  color: var(--primary-dark); 
+  font-size: 18px; 
+  margin-bottom: 20px; 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+/* ==========================================
+   ESTATÍSTICAS (Progresso)
+   ========================================== */
+.progresso-stats {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.progresso-stats .stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-value { 
+  font-size: 24px;
+  font-weight: bold; 
+  color: var(--primary-dark); 
+}
+
+/* ==========================================
+   LISTAS (Tarefas e Braindump)
+   ========================================== */
+/* Container principal do item da lista */
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  background-color: var(--bg-color);
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  width: 100%; 
+}
+
+/* Nova caixa cravada na esquerda */
+.item-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  flex-grow: 1;
+  overflow: hidden; /* Evita que vaze */
+}
+
+/* Protege o texto para não sumir e não quebrar o layout */
+.item-left p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Se o texto for gigante, ele coloca "..." no final */
+}
+
+/* Estilo de tarefa concluída */
+.list-item.completed p {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+
+/* A checkbox */
+.list-item input[type="checkbox"] {
+  margin: 0;
+  min-width: 18px;
+  height: 18px;
+  accent-color: var(--primary-dark);
+  cursor: pointer;
+  flex-shrink: 0; 
+}
+
+/* O botão de excluir (X) */
+.list-item button {
+  background: none;
+  color: #ff6b6b;
+  width: auto;
+  padding: 5px;
+  margin: 0 0 0 10px;
+  font-size: 14px;
+  flex-shrink: 0; 
+}
+
+.list-item button:hover {
+  background-color: #ffebeb;
+}
+/* ==========================================
+   INPUTS COM BOTÃO AO LADO (Adicionar Tarefa/Braindump)
+   ========================================== */
+.input-flex {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-flex input {
+  margin-bottom: 0;
+}
+
+.input-flex button {
+  width: auto;
+  margin-top: 0;
+  padding: 0 20px;
+}
+
+/* ==========================================
+   CONFIGURAÇÕES DO POMODORO
+   ========================================== */
+.pomodoro-config {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.pomodoro-config label {
+  font-size: 12px;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pomodoro-config input {
+  width: 60px;
+  text-align: center;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+/* ==========================================
+   RESPONSIVIDADE (Telas Menores)
+   ========================================== */
+@media (max-width: 900px) {
+  .bottom-grid { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .progresso-stats { 
+    flex-direction: column; 
+    gap: 20px; 
+  }
+}
+
+/* ==========================================
+    LOGO (Gatinho)
+   ========================================== */
+.logo-img {
+  width: 50px; /* Largura da imagem */
+  height: 60px; /* Altura da imagem */
+}
+
+/* Ajuste específico para a tela de login (index.html) */
+.login-container .logo-img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
