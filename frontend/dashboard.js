@@ -14,7 +14,7 @@ const headers = {
 // ==========================================
 async function carregarEstatisticas() {
   try {
-    const response = await fetch('http://localhost:3000/api/progress', { headers });
+    const response = await fetch('https://tdahto.onrender.com/api/progress', { headers });
     if (response.ok) {
       const data = await response.json();
       document.getElementById('statTasks').textContent = data.completedTasks;
@@ -34,7 +34,7 @@ const taskInput = document.getElementById('taskInput');
 const btnTask = document.getElementById('btnTask');
 
 async function carregarTarefas() {
-  const response = await fetch('http://localhost:3000/api/tasks', { headers });
+  const response = await fetch('https://tdahto.onrender.com/api/tasks', { headers });
   const tasks = await response.json();
   
   tasksList.innerHTML = '';
@@ -54,7 +54,7 @@ async function carregarTarefas() {
 
 btnTask.addEventListener('click', async () => {
   if (!taskInput.value) return;
-  await fetch('http://localhost:3000/api/tasks', {
+  await fetch('https://tdahto.onrender.com/api/tasks', {
     method: 'POST', headers, body: JSON.stringify({ title: taskInput.value })
   });
   taskInput.value = '';
@@ -69,7 +69,7 @@ taskInput.addEventListener('keypress', (e) => {
 });
 
 window.atualizarTarefa = async (id, completed) => {
-  await fetch(`http://localhost:3000/api/tasks/${id}`, {
+  await fetch(`https://tdahto.onrender.com/api/tasks/${id}`, {
     method: 'PUT', headers, body: JSON.stringify({ completed })
   });
   await carregarTarefas();       // O await garante o tempo real
@@ -77,7 +77,7 @@ window.atualizarTarefa = async (id, completed) => {
 };
 
 window.deletarTarefa = async (id) => {
-  await fetch(`http://localhost:3000/api/tasks/${id}`, { method: 'DELETE', headers });
+  await fetch(`https://tdahto.onrender.com/api/tasks/${id}`, { method: 'DELETE', headers });
   await carregarTarefas();
   await carregarEstatisticas();  // Se apagar uma tarefa concluída, o número cai na hora
 };
@@ -90,7 +90,7 @@ const braindumpInput = document.getElementById('braindumpInput');
 const btnBraindump = document.getElementById('btnBraindump');
 
 async function carregarBraindumps() {
-  const response = await fetch('http://localhost:3000/api/braindumps', { headers });
+  const response = await fetch('https://tdahto.onrender.com/api/braindumps', { headers });
   const dumps = await response.json();
   
   braindumpsList.innerHTML = '';
@@ -110,7 +110,7 @@ async function carregarBraindumps() {
 
 btnBraindump.addEventListener('click', async () => {
   if (!braindumpInput.value) return;
-  await fetch('http://localhost:3000/api/braindumps', {
+  await fetch('https://tdahto.onrender.com/api/braindumps', {
     method: 'POST', headers, body: JSON.stringify({ content: braindumpInput.value })
   });
   braindumpInput.value = '';
@@ -125,7 +125,7 @@ braindumpInput.addEventListener('keypress', (e) => {
 });
 
 window.deletarBraindump = async (id) => {
-  await fetch(`http://localhost:3000/api/braindumps/${id}`, { method: 'DELETE', headers });
+  await fetch(`https://tdahto.onrender.com/braindumps/${id}`, { method: 'DELETE', headers });
   await carregarBraindumps();
 };
 
@@ -181,7 +181,7 @@ btnPomodoro.addEventListener('click', () => {
         
         if (isFocusMode) {
           // Salva o ciclo no backend
-          await fetch('http://localhost:3000/api/pomodoros', {
+          await fetch('https://tdahto.onrender.com/api/pomodoros', {
             method: 'POST', headers, 
             body: JSON.stringify({ focusDuration: focusInput.value, pauseDuration: pauseInput.value })
           });
